@@ -1,0 +1,10 @@
+# Mantem a estrutura das subpastas do workflow,
+# mas ignora os documentos gerados nelas.
+workflow/requirements/*
+!workflow/requirements/.gitkeep
+
+workflow/plans/*
+!workflow/plans/.gitkeep
+
+workflow/summaries/*
+!workflow/summaries/.gitkeep
