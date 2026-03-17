@@ -1,11 +1,19 @@
 ---
 name: summarize
 description: Review delivery adherence and generate summary artifacts for this repository workflow. Use when a user asks to compare implementation against `workflow/requirements/{task-name}.md` and create `workflow/summaries/{task-name}.md` from `.docs/summary_template.md` with reviewer-ready evidence.
+argument-hint: "[task slug or requirements/plan references]"
 ---
 
 # Summarize
 
 Run workflow delivery-review steps 11-12: verify requirement adherence and produce a summary document.
+
+Input (requirements/plan references or task slug):
+$ARGUMENTS
+
+If a task slug is provided, resolve inputs as:
+- `workflow/requirements/{task-name}.md`
+- `workflow/plans/{task-name}.md`
 
 ## Workflow
 

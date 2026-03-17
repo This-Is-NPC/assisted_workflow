@@ -1,11 +1,19 @@
 ---
 name: implement
 description: Execute implementation and validation from approved workflow plans in this repository. Use when a user asks to apply `workflow/plans/{task-name}.md`, create or update tests for new and impacted behavior, analyze regressions, and report validation evidence against `workflow/requirements/{task-name}.md`.
+argument-hint: "[task slug or plan/requirements references]"
 ---
 
 # Implement
 
 Run workflow implementation steps 8-9: implement planned changes, execute validations, and report regression impact.
+
+Input (task slug or explicit plan/requirements references):
+$ARGUMENTS
+
+If a task slug is provided, resolve inputs as:
+- `workflow/plans/{task-name}.md`
+- `workflow/requirements/{task-name}.md`
 
 ## Workflow
 

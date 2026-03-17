@@ -1,11 +1,17 @@
 ---
 name: planning
 description: Build implementation plans from approved requirements in this repository workflow. Use when a user asks to create `workflow/plans/{task-name}.md` from `workflow/requirements/{task-name}.md` using `.docs/plan_template.md`, including testing strategy, impact analysis, and regression-risk mitigation.
+argument-hint: "[requirements doc path or task slug]"
 ---
 
 # Planning
 
 Run workflow planning step 7: produce an execution-ready plan file traceable to requirements.
+
+Input (requirements doc path or task slug):
+$ARGUMENTS
+
+If a task slug is provided, resolve it to `workflow/requirements/{task-name}.md`.
 
 ## Workflow
 

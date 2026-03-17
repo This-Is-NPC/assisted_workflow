@@ -1,11 +1,15 @@
 ---
 name: requirements
 description: Analyze feasibility and produce requirement documents for this repository workflow. Use when a user asks to scope a task, validate implementation viability, clarify acceptance criteria/Definition of Done, or create `workflow/requirements/{task-name}.md` from `.docs/user_story_template.md`.
+argument-hint: "[task description or request]"
 ---
 
 # Requirements
 
 Run the requirements phase from the project workflow (steps 1-4): feasibility, decision, clarification, and requirements authoring.
+
+Task context:
+$ARGUMENTS
 
 ## Workflow
 

@@ -1,6 +1,7 @@
 ---
 name: commit
 description: Create commits for all pending repository changes by strictly following CONTRIBUTING.md commit rules. Use when the user asks to commit changes, organize commits by scope, avoid oversized commits, or enforce Conventional Commits messages in English.
+argument-hint: "[optional context]"
 ---
 
 # Commit
@@ -9,6 +10,9 @@ description: Create commits for all pending repository changes by strictly follo
 
 Create small, scoped commits from the current working tree.
 Follow `CONTRIBUTING.md` exactly for commit standards and message format.
+
+Additional context (optional):
+$ARGUMENTS
 
 ## Workflow
 

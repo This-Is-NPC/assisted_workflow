@@ -1,11 +1,17 @@
 ---
 name: prepare
 description: Create implementation preparation artifacts from approved requirements. Use when a user asks to convert `workflow/requirements/{task-name}.md` into a GitHub issue and generate or create the implementation branch using workflow naming rules.
+argument-hint: "[requirements doc path or task slug]"
 ---
 
 # Prepare
 
 Run workflow preparation steps 5-6: create a GitHub issue from requirements and create or define the implementation branch.
+
+Input (requirements doc path or task slug):
+$ARGUMENTS
+
+If a task slug is provided, resolve it to `workflow/requirements/{task-name}.md`.
 
 ## Workflow
 
