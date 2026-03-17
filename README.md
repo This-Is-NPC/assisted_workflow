@@ -2,6 +2,32 @@
 
 This project documents an AI-driven work methodology, based on the flow defined in `workflow/README.md`.
 
+## Get Started
+
+Install the workflow in your project with a single command:
+
+```bash
+# Claude Code
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent claude
+
+# Codex
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent codex
+
+# GitHub Copilot
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent github
+
+# OpenCode
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent opencode
+```
+
+To update an existing installation (preserves your `CONTRIBUTING.md`):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent claude --update
+```
+
+After installing, edit `CONTRIBUTING.md` with your project settings and start with `/requirements <your task>`.
+
 ## Objective
 
 Record and compare the application of the methodology with different AI tools, maintaining a consistent and traceable process.
