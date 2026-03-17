@@ -27,6 +27,11 @@
 | {Scenario 2} | {Outcome 2} |
 | {Scenario 3} | {Outcome 3} |
 
+## Deviations
+| Requirement / Criterion | Deviation | Rationale |
+| --- | --- | --- |
+| {Criterion 1} | {What diverged} | {Why} |
+
 ## Risks / Follow-ups
 - {Risk 1}
 - {Risk 2}
