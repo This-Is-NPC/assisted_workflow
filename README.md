@@ -115,6 +115,60 @@ workflow/
 
 The `.gitignore` is configured to ignore generated content in `workflow/` subdirectories, preserving the structure with `.gitkeep` files.
 
+## Model Tiers
+
+Each skill declares a `model-tier` in its YAML frontmatter, indicating the recommended model capability level for orchestration tools to select appropriate models per task.
+
+| Skill | `model-tier` | Rationale |
+|-------|-------------|-----------|
+| `/commit` | `small` | Pattern matching + mechanical formatting |
+| `/prepare` | `small` | Template filling, well-constrained output |
+| `/requirements` | `medium` | Feasibility check requires code comprehension, but output is structured |
+| `/summarize` | `medium` | Synthesis of git history/diffs, template-driven |
+| `/planning` | `large` | Architecture decisions, decomposition, risk analysis |
+| `/implement` | `large` | Code generation, tests, self-review loop — capability translates to quality |
+
+### Tier Definitions
+
+| Tier | Use case | Example models |
+|------|----------|---------------|
+| `small` | Mechanical, constrained tasks with clear rules | Haiku, GPT-4o mini, small local models |
+| `medium` | Structured reasoning with moderate judgment | Sonnet, GPT-4o |
+| `large` | High judgment, open-ended reasoning, code generation | Opus, o3, GPT-4.5 |
+
+### How Orchestration Tools Use Tiers
+
+Read the `model-tier` field from each skill's frontmatter to route tasks to cost-appropriate models. Tiers are recommendations — developers can override them based on their quality/cost tradeoff preferences.
+
+## Configuring CONTRIBUTING.md
+
+`CONTRIBUTING.md` is the central configuration hub read by all skills as their first step. It contains project standards, template paths, and external tool configuration.
+
+To adopt this workflow in a new project:
+
+1. Copy `.docs/contributing_template.md` to `CONTRIBUTING.md` in your project root.
+2. Fill in the values for your project.
+
+### Configurable Parameters
+
+| Section | Parameter | Description | Example Values |
+|---------|-----------|-------------|----------------|
+| Commit Standards | types | Allowed commit types | `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `build`, `ci`, `perf` |
+| Commit Standards | format | Commit message format | `type(scope): summary` |
+| Commit Standards | language | Commit message language | English |
+| Branch Naming | feature pattern | Branch name for features | `feature/{short-name}` |
+| Branch Naming | fix pattern | Branch name for fixes | `fix/{short-name}` |
+| Workflow Templates | Requirements path | Template for `/requirements` | `.docs/user_story_template.md` |
+| Workflow Templates | Plan path | Template for `/planning` | `.docs/plan_template.md` |
+| Workflow Templates | Summary path | Template for `/summarize` | `.docs/summary_template.md` |
+| Project Management | Tool | PM tool in use | GitHub Projects, Azure DevOps, Jira, Linear, None |
+| Project Management | Access method | How the agent accesses the tool | CLI (`gh`, `az`, `jira-cli`), MCP server, API, Manual |
+| Project Management | Project URL | Board/project identifier | URL or project ID |
+| Project Management | Read tasks | Command/tool to list tasks | `gh project item-list 1 --owner org` |
+| Project Management | Create issues | Command/tool to create issues | `gh issue create` or MCP tool name |
+| Project Management | Update status | Command/tool to update task status | `gh project item-edit` or MCP tool name |
+| Code Standards | conventions | Language-specific rules, linting, test framework | Project-specific |
+
 ## Skills Management
 
 All skills are maintained in a single canonical location (`src/skills/`) and distributed to each agent directory via a sync script. This ensures every agent always has the same skill content.

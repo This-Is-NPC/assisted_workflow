@@ -32,7 +32,8 @@ Use commands in this exact order:
 ### 4) `/implement`
 - Purpose: execute plan changes, update tests, and validate regressions.
 - Input: `workflow/plans/{task-name}.md` and `workflow/requirements/{task-name}.md`, or inline context.
-- Output: implemented changes, tests, validation evidence.
+- Output: implemented changes, tests, validation evidence, self-review result.
+- Includes a **self-review cycle** (max 3 attempts): after implementation, tests are run and failures are fixed iteratively. If all tests pass, the skill finalizes. If failures persist after 3 attempts, implementation stops and a failure report with root cause analysis and adjustment plan is returned to the user.
 - Example (local files): `/implement audio-transcription-badges`
 - Example (inline context): see [Flexible Usage](#flexible-usage) below
 
