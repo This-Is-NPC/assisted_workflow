@@ -7,7 +7,7 @@ model-tier: medium
 
 # Requirements
 
-Run the requirements phase from the project workflow (steps 1-4): feasibility, decision, clarification, and requirements authoring.
+Run the requirements phase from the official workflow: feasibility, decision, clarification, and requirements authoring.
 
 Task context:
 $ARGUMENTS

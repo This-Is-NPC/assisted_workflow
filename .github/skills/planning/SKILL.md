@@ -7,7 +7,7 @@ model-tier: large
 
 # Planning
 
-Run workflow planning step 7: produce an execution-ready plan file traceable to requirements.
+Run the planning phase from the official workflow: produce an execution-ready plan file traceable to requirements.
 
 Input (requirements doc path or task slug):
 $ARGUMENTS
@@ -20,7 +20,7 @@ If a task slug is provided, resolve it to `workflow/requirements/{task-name}.md`
 
 1. Load planning inputs.
 - Read `workflow/requirements/{task-name}.md` as source of truth.
-- Read the plan template from the path specified in `CONTRIBUTING.md` and preserve its structure.
+- Read the plan template from the path specified in `CONTRIBUTING.md` and use it as the base structure.
 
 2. Map requirements to plan sections.
 - Convert each acceptance criterion into planned work.
@@ -29,6 +29,7 @@ If a task slug is provided, resolve it to `workflow/requirements/{task-name}.md`
 3. Author complete plan artifact.
 - Create `workflow/plans/{task-name}.md`.
 - Remove all placeholders from the template.
+- Preserve the template structure where applicable and add missing required sections when the template does not explicitly include them.
 - Include mandatory elements:
   - implementation phases
   - task breakdown

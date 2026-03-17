@@ -7,7 +7,7 @@ model-tier: large
 
 # Implement
 
-Run workflow implementation steps 8-9: implement planned changes, execute validations, and report regression impact.
+Run the implementation phase from the official workflow: implement planned changes, execute validations, and report regression impact.
 
 Input (task slug, plan/requirements references, or inline context):
 $ARGUMENTS

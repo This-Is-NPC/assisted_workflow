@@ -7,7 +7,7 @@ model-tier: small
 
 # Prepare
 
-Run workflow preparation steps 5-6: create a project management issue from requirements and create or define the implementation branch.
+Run the preparation phase from the official workflow: create a project management issue from requirements and create or define the implementation branch.
 
 Input (requirements doc path or task slug):
 $ARGUMENTS
