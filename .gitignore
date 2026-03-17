@@ -1,5 +1,5 @@
-# Mantem a estrutura das subpastas do workflow,
-# mas ignora os documentos gerados nelas.
+# Keep workflow subdirectory structure,
+# but ignore generated documents inside them.
 workflow/requirements/*
 !workflow/requirements/.gitkeep
 
@@ -8,3 +8,41 @@ workflow/plans/*
 
 workflow/summaries/*
 !workflow/summaries/.gitkeep
+
+# workflow/ inside .docs/ or docs/
+.docs/workflow/requirements/*
+!.docs/workflow/requirements/.gitkeep
+.docs/workflow/plans/*
+!.docs/workflow/plans/.gitkeep
+.docs/workflow/summaries/*
+!.docs/workflow/summaries/.gitkeep
+
+docs/workflow/requirements/*
+!docs/workflow/requirements/.gitkeep
+docs/workflow/plans/*
+!docs/workflow/plans/.gitkeep
+docs/workflow/summaries/*
+!docs/workflow/summaries/.gitkeep
+
+# .workflow/ (hidden variant)
+.workflow/requirements/*
+!.workflow/requirements/.gitkeep
+.workflow/plans/*
+!.workflow/plans/.gitkeep
+.workflow/summaries/*
+!.workflow/summaries/.gitkeep
+
+# .workflow/ inside .docs/ or docs/
+.docs/.workflow/requirements/*
+!.docs/.workflow/requirements/.gitkeep
+.docs/.workflow/plans/*
+!.docs/.workflow/plans/.gitkeep
+.docs/.workflow/summaries/*
+!.docs/.workflow/summaries/.gitkeep
+
+docs/.workflow/requirements/*
+!docs/.workflow/requirements/.gitkeep
+docs/.workflow/plans/*
+!docs/.workflow/plans/.gitkeep
+docs/.workflow/summaries/*
+!docs/.workflow/summaries/.gitkeep
