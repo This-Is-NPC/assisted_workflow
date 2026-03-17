@@ -31,9 +31,10 @@ Use commands in this exact order:
 
 ### 4) `/implement`
 - Purpose: execute plan changes, update tests, and validate regressions.
-- Input: `workflow/plans/{task-name}.md` and `workflow/requirements/{task-name}.md`.
+- Input: `workflow/plans/{task-name}.md` and `workflow/requirements/{task-name}.md`, or inline context.
 - Output: implemented changes, tests, validation evidence.
-- Example: `/implement audio-transcription-badges`
+- Example (local files): `/implement audio-transcription-badges`
+- Example (inline context): see [Flexible Usage](#flexible-usage) below
 
 ### 5) `/commit`
 - Purpose: create focused Conventional Commits according to `CONTRIBUTING.md`.
@@ -42,7 +43,53 @@ Use commands in this exact order:
 - Example: `/commit Create focused Conventional Commits for all pending changes.`
 
 ### 6) `/summarize`
-- Purpose: compare delivery vs requirements and generate PR-ready summary.
-- Input: requirements, plan, and implemented branch state.
-- Output: `workflow/summaries/{task-name}.md`.
-- Example: `/summarize audio-transcription-badges`
+- Purpose: compare delivery vs requirements and generate PR-ready summary. Can also run standalone from git history.
+- Input: requirements + plan + branch state, external reference URL, or empty (git-only).
+- Output: `workflow/summaries/{task-name}.md` or inline summary.
+- Example (local files): `/summarize audio-transcription-badges`
+- Example (git-only): `/summarize`
+- Example (external ref): `/summarize https://dev.azure.com/org/project/_workitems/edit/1234`
+
+## Flexible Usage
+
+Both `/implement` and `/summarize` support flexible input modes, allowing you to skip the full pipeline when requirements already exist externally.
+
+### `/implement` with Inline Context
+
+When you already have requirements defined elsewhere (Azure DevOps, GitHub Projects, etc.), you can pass them directly:
+
+```
+/implement ## Inline Context
+
+### Scope
+- Add retry logic to the payment gateway client
+- Out of scope: billing UI changes
+
+### Acceptance Criteria
+- Failed requests are retried up to 3 times with exponential backoff
+- Circuit breaker opens after 5 consecutive failures
+- All retry attempts are logged with correlation ID
+
+### Implementation Approach
+- Wrap existing `PaymentClient.send()` with retry decorator
+- Add circuit breaker state machine in `lib/resilience/`
+- Unit tests for retry counts and backoff timing
+```
+
+**Minimum required sections for inline context:**
+
+| Section | Purpose |
+|---------|---------|
+| **Scope** | What changes, what is out of scope |
+| **Acceptance Criteria** | Testable conditions for "done" |
+| **Implementation Approach** | How to structure, phase, and test changes |
+
+Optional: **External Reference** (URL to ticket), **Regression Concerns** (known risk areas).
+
+### `/summarize` Independent Modes
+
+| Mode | Trigger | Deviation Analysis |
+|------|---------|-------------------|
+| **Git-only** | No arguments or branch/range only | No — summary from git history only |
+| **External reference** | URL or pasted requirements | Yes — compares delivery against reference |
+| **Local files** | Task slug | Yes — compares against `workflow/requirements/` |

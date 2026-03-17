@@ -17,6 +17,56 @@ The step order is in `workflow/README.md`:
 5. `/commit`
 6. `/summarize`
 
+Each task follows a linear pipeline: a user request is validated and scoped into requirements, then tracked via a GitHub issue and branch. An execution plan is produced, code is implemented and validated against that plan, changes are committed following Conventional Commits, and finally a reviewer-ready summary compares the delivery against the original requirements.
+
+```mermaid
+flowchart TD
+    A["/requirements"] -->|"requirements/{task}.md"| B["/prepare"]
+    B -->|"GitHub issue + branch"| C["/planning"]
+    C -->|"plans/{task}.md"| D["/implement"]
+    D -->|"code + tests + evidence"| E["/commit"]
+    E -->|"scoped commits"| F["/summarize"]
+
+    A:::phase
+    B:::phase
+    C:::phase
+    D:::phase
+    E:::phase
+    F:::phase
+
+    classDef phase fill:#1a1a2e,stroke:#e94560,stroke-width:2px,color:#eee
+```
+
+### Step Breakdown
+
+| Step | Purpose | Input | Output |
+|------|---------|-------|--------|
+| `/requirements` | Validate feasibility, clarify scope, and author requirements | User request | `workflow/requirements/{task}.md` |
+| `/prepare` | Create GitHub issue and implementation branch | Requirements doc | GitHub issue + feature branch |
+| `/planning` | Produce execution-ready plan with tests and risk analysis | Requirements doc | `workflow/plans/{task}.md` |
+| `/implement` | Apply planned changes, run tests, and collect validation evidence | Plan + requirements | Code, tests, evidence |
+| `/commit` | Create focused, scoped Conventional Commits | Working tree | Scoped commits |
+| `/summarize` | Compare delivery against requirements and generate PR-ready summary | Requirements + plan + branch state | `workflow/summaries/{task}.md` |
+
+### Shortcut: Inline Context
+
+You don't always need the full pipeline. When requirements already exist externally (Azure DevOps, GitHub Projects, etc.), pass them directly to `/implement` using a `## Inline Context` header with **Scope**, **Acceptance Criteria**, and **Implementation Approach** sections. This lets you skip `/requirements`, `/prepare`, and `/planning` entirely. Similarly, `/summarize` can run standalone — from git history alone (no arguments), against an external reference URL, or from local files.
+
+```mermaid
+flowchart TD
+    A["Inline Context"] -->|"scope + criteria + approach"| D["/implement"]
+    D -->|"code + tests + evidence"| E["/commit"]
+    E -->|"scoped commits"| F["/summarize"]
+
+    A:::input
+    D:::phase
+    E:::phase
+    F:::phase
+
+    classDef input fill:#2d2d44,stroke:#7b68ee,stroke-width:2px,color:#eee
+    classDef phase fill:#1a1a2e,stroke:#e94560,stroke-width:2px,color:#eee
+```
+
 ## Supported Agents
 
 The same set of skills is available across 4 AI agents:
