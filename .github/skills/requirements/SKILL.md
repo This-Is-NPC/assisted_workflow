@@ -1,7 +1,8 @@
 ---
 name: requirements
-description: Analyze feasibility and produce requirement documents for this repository workflow. Use when a user asks to scope a task, validate implementation viability, clarify acceptance criteria/Definition of Done, or create `workflow/requirements/{task-name}.md` from `.docs/user_story_template.md`.
+description: Analyze feasibility and produce requirement documents for this repository workflow. Use when a user asks to scope a task, validate implementation viability, clarify acceptance criteria/Definition of Done, or create `workflow/requirements/{task-name}.md`.
 argument-hint: "[task description or request]"
+model-tier: medium
 ---
 
 # Requirements
@@ -12,6 +13,8 @@ Task context:
 $ARGUMENTS
 
 ## Workflow
+
+0. Read `CONTRIBUTING.md` for project standards, template paths, and tool configuration. Use the **Workflow Templates** section to locate the requirements template path.
 
 1. Analyze feasibility against the current repository.
 - Inspect architecture, dependencies, and known constraints.
@@ -30,7 +33,7 @@ $ARGUMENTS
 - Record explicit assumptions when information is missing.
 
 4. Create the requirements artifact.
-- Read `.docs/user_story_template.md` and follow it exactly.
+- Read the requirements template from the path specified in `CONTRIBUTING.md` and follow it exactly.
 - Create `workflow/requirements/{task-name}.md`.
 - Remove all placeholders from the template.
 

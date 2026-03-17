@@ -1,7 +1,8 @@
 ---
 name: planning
-description: Build implementation plans from approved requirements in this repository workflow. Use when a user asks to create `workflow/plans/{task-name}.md` from `workflow/requirements/{task-name}.md` using `.docs/plan_template.md`, including testing strategy, impact analysis, and regression-risk mitigation.
+description: Build implementation plans from approved requirements in this repository workflow. Use when a user asks to create `workflow/plans/{task-name}.md` from approved requirements, including testing strategy, impact analysis, and regression-risk mitigation.
 argument-hint: "[requirements doc path or task slug]"
+model-tier: large
 ---
 
 # Planning
@@ -15,9 +16,11 @@ If a task slug is provided, resolve it to `workflow/requirements/{task-name}.md`
 
 ## Workflow
 
+0. Read `CONTRIBUTING.md` for project standards, template paths, and tool configuration. Use the **Workflow Templates** section to locate the plan template path.
+
 1. Load planning inputs.
 - Read `workflow/requirements/{task-name}.md` as source of truth.
-- Read `.docs/plan_template.md` and preserve its structure.
+- Read the plan template from the path specified in `CONTRIBUTING.md` and preserve its structure.
 
 2. Map requirements to plan sections.
 - Convert each acceptance criterion into planned work.

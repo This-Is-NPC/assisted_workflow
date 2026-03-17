@@ -2,6 +2,7 @@
 name: summarize
 description: Review delivery adherence and generate summary artifacts. Works independently from git history, with an external reference (URL/inline requirements), or from local workflow files. Use when a user asks to summarize implementation work, compare delivery against requirements, or create `workflow/summaries/{task-name}.md`.
 argument-hint: "[task slug, external reference URL, inline context, or empty for git-only]"
+model-tier: medium
 ---
 
 # Summarize
@@ -33,10 +34,12 @@ Activated when a task slug or file paths are provided. Resolve inputs as:
 
 ## Workflow
 
+0. Read `CONTRIBUTING.md` for project standards, template paths, and tool configuration. Use the **Workflow Templates** section to locate the summary template path.
+
 1. Load review inputs.
-- **Mode A**: inspect current branch git log and diffs. Read `.docs/summary_template.md`.
-- **Mode B**: fetch or read the external reference. Inspect branch content. Read `.docs/summary_template.md`.
-- **Mode C**: read `workflow/requirements/{task-name}.md`, `workflow/plans/{task-name}.md`. Inspect branch content. Read `.docs/summary_template.md`.
+- **Mode A**: inspect current branch git log and diffs. Read the summary template from the path specified in `CONTRIBUTING.md`.
+- **Mode B**: fetch or read the external reference. Inspect branch content. Read the summary template from the path specified in `CONTRIBUTING.md`.
+- **Mode C**: read `workflow/requirements/{task-name}.md`, `workflow/plans/{task-name}.md`. Inspect branch content. Read the summary template from the path specified in `CONTRIBUTING.md`.
 
 2. Perform adherence analysis (Mode B and Mode C only).
 - Compare implemented behavior to requirements and Definition of Done.
@@ -47,7 +50,7 @@ Activated when a task slug or file paths are provided. Resolve inputs as:
 3. Build summary artifact.
 - For Mode C: create `workflow/summaries/{task-name}.md`.
 - For Mode A/B: create summary in an appropriate location or return inline.
-- Fill `.docs/summary_template.md` completely with no placeholders.
+- Fill the summary template completely with no placeholders.
 - Include:
   - before/after state
   - key changes
@@ -55,7 +58,7 @@ Activated when a task slug or file paths are provided. Resolve inputs as:
   - validation evidence (tests and regression checks)
   - **Deviations** section (Mode B and Mode C only) — filled with actual deviations or explicitly marked "None"
   - risks and follow-ups
-  - references (requirements, plan, issue, commits, branch)
+  - references (issue, commits, branch — no local file paths)
 
 ## Output Contract
 
