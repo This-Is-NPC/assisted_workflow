@@ -6,24 +6,54 @@ This project documents an AI-driven work methodology, based on the flow defined 
 
 Install the workflow in your project with a single command:
 
+### Claude Code
+
 ```bash
-# Claude Code
 curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent claude
+```
 
-# Codex
+### Codex
+
+```bash
 curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent codex
+```
 
-# GitHub Copilot
+### GitHub Copilot
+
+```bash
 curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent github
+```
 
-# OpenCode
+### OpenCode
+
+```bash
 curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent opencode
 ```
 
 To update an existing installation (preserves your `CONTRIBUTING.md`):
 
+### Claude Code (update)
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent claude --update
+```
+
+### Codex (update)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent codex --update
+```
+
+### GitHub Copilot (update)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent github --update
+```
+
+### OpenCode (update)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master/scripts/install.sh | bash -s -- --agent opencode --update
 ```
 
 After installing, edit `CONTRIBUTING.md` with your project settings and start with `/requirements <your task>`.
