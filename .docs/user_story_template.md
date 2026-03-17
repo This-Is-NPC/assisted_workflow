@@ -4,4 +4,4 @@
 
 {{Definition of Done}}
 
-{{}} = Devem ser removidos isso é apenas para indicar o nome do tópico.
+{{}} = Must be removed; these are only placeholders indicating the topic name.
