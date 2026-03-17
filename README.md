@@ -146,7 +146,7 @@ Read the `model-tier` field from each skill's frontmatter to route tasks to cost
 
 To adopt this workflow in a new project:
 
-1. Copy `.docs/contributing_template.md` to `CONTRIBUTING.md` in your project root.
+1. Copy `.docs/templates/contributing_template.md` to `CONTRIBUTING.md` in your project root.
 2. Fill in the values for your project.
 
 ### Configurable Parameters
@@ -158,9 +158,9 @@ To adopt this workflow in a new project:
 | Commit Standards | language | Commit message language | English |
 | Branch Naming | feature pattern | Branch name for features | `feature/{short-name}` |
 | Branch Naming | fix pattern | Branch name for fixes | `fix/{short-name}` |
-| Workflow Templates | Requirements path | Template for `/requirements` | `.docs/user_story_template.md` |
-| Workflow Templates | Plan path | Template for `/planning` | `.docs/plan_template.md` |
-| Workflow Templates | Summary path | Template for `/summarize` | `.docs/summary_template.md` |
+| Workflow Templates | Requirements path | Template for `/requirements` | `.docs/templates/user_story_template.md` |
+| Workflow Templates | Plan path | Template for `/planning` | `.docs/templates/plan_template.md` |
+| Workflow Templates | Summary path | Template for `/summarize` | `.docs/templates/summary_template.md` |
 | Project Management | Tool | PM tool in use | GitHub Projects, Azure DevOps, Jira, Linear, None |
 | Project Management | Access method | How the agent accesses the tool | CLI (`gh`, `az`, `jira-cli`), MCP server, API, Manual |
 | Project Management | Project URL | Board/project identifier | URL or project ID |

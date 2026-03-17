@@ -18,9 +18,9 @@
 
 | Template | Path | Used by |
 |----------|------|---------|
-| Requirements | `.docs/user_story_template.md` | `/requirements` |
-| Plan | `.docs/plan_template.md` | `/planning` |
-| Summary | `.docs/summary_template.md` | `/summarize` |
+| Requirements | `.docs/templates/user_story_template.md` | `/requirements` |
+| Plan | `.docs/templates/plan_template.md` | `/planning` |
+| Summary | `.docs/templates/summary_template.md` | `/summarize` |
 
 ## Project Management
 
