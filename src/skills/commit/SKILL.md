@@ -24,10 +24,16 @@ $ARGUMENTS
 4. Stage only the files/hunks for one scope and commit.
 5. Repeat until all pending changes are committed.
 
+## Co-authorship
+
+- **Never** add `Co-Authored-By` or any co-author trailer to commit messages.
+- Only include co-author information when the user **explicitly** requests it in the current conversation.
+
 ## Execution Checklist
 
 1. Confirm grouping is by scope, not by file count only.
 2. Confirm commit message type matches the real change intent.
 3. Confirm message is English and concise.
 4. Confirm no unrelated file is staged.
-5. Confirm working tree is clean after final commit.
+5. Confirm no `Co-Authored-By` trailer is present (unless explicitly requested).
+6. Confirm working tree is clean after final commit.
