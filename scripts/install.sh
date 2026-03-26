@@ -2,7 +2,7 @@
 set -euo pipefail
 
 RAW_BASE="https://raw.githubusercontent.com/This-Is-NPC/assisted_workflow/master"
-SKILLS=(commit implement planning prepare requirements summarize)
+SKILLS=(commit document implement planning prepare requirements summarize)
 VALID_AGENTS=(claude codex github opencode)
 
 # --- Argument parsing ---
@@ -149,12 +149,20 @@ done
 
 # Agent-specific extras
 case "$AGENT" in
+  claude)
+    echo "Installing claude permissions..."
+    download ".claude/settings.json" "$AGENT_DIR/settings.json"
+    ;;
   codex)
     echo "Installing codex agent configs..."
     for skill in "${SKILLS[@]}"; do
       download ".codex/skills/$skill/agents/openai.yaml" "$AGENT_DIR/skills/$skill/agents/openai.yaml"
       sed_paths "$AGENT_DIR/skills/$skill/agents/openai.yaml"
     done
+    echo "Installing codex permissions..."
+    download ".codex/config.toml" "$AGENT_DIR/config.toml"
+    mkdir -p "$AGENT_DIR/rules"
+    download ".codex/rules/workflow-updates.rules" "$AGENT_DIR/rules/workflow-updates.rules"
     ;;
   opencode)
     echo "Installing opencode commands..."
@@ -162,6 +170,8 @@ case "$AGENT" in
       download ".opencode/commands/$skill.md" "$AGENT_DIR/commands/$skill.md"
       sed_paths "$AGENT_DIR/commands/$skill.md"
     done
+    echo "Installing opencode permissions..."
+    download ".opencode/opencode.json" "$AGENT_DIR/opencode.json"
     ;;
 esac
 
