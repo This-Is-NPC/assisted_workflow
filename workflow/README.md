@@ -51,6 +51,15 @@ Use commands in this exact order:
 - Example (git-only): `/summarize`
 - Example (external ref): `/summarize https://dev.azure.com/org/project/_workitems/edit/1234`
 
+### 7) `/document` (standalone)
+- Purpose: analyze the codebase and generate a project knowledge base.
+- Input: codebase + optional user context.
+- Output: `architecture.md` (tech stack, dependencies, patterns, auth, roles) and `requirements.md` (functional, non-functional, business rules with file references).
+- Can be used at any point — independent of the pipeline.
+- When these files exist, `/planning` and `/implement` automatically use them as constraints.
+- Example: `/document`
+- Example: `/document Focus on the authentication and authorization layers`
+
 ## Flexible Usage
 
 Both `/implement` and `/summarize` support flexible input modes, allowing you to skip the full pipeline when requirements already exist externally.

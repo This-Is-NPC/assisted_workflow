@@ -73,16 +73,21 @@ The step order is in `workflow/README.md`:
 5. `/commit`
 6. `/summarize`
 
+The `/document` skill can be used at any point (standalone) to generate `architecture.md` and `requirements.md` as a project knowledge base. When these files exist, `/planning` and `/implement` automatically align new work to the documented patterns.
+
 Each task follows a linear pipeline: a user request is validated and scoped into requirements, then tracked via a GitHub issue and branch. An execution plan is produced, code is implemented and validated against that plan, changes are committed following Conventional Commits, and finally a reviewer-ready summary compares the delivery against the original requirements.
 
 ```mermaid
 flowchart TD
+    DOC["/document"] -.->|"architecture.md + requirements.md"| C
+    DOC -.->|"architecture.md + requirements.md"| D
     A["/requirements"] -->|"requirements/{task}.md"| B["/prepare"]
     B -->|"GitHub issue + branch"| C["/planning"]
     C -->|"plans/{task}.md"| D["/implement"]
     D -->|"code + tests + evidence"| E["/commit"]
     E -->|"scoped commits"| F["/summarize"]
 
+    DOC:::standalone
     A:::phase
     B:::phase
     C:::phase
@@ -91,6 +96,7 @@ flowchart TD
     F:::phase
 
     classDef phase fill:#1a1a2e,stroke:#e94560,stroke-width:2px,color:#eee
+    classDef standalone fill:#2d2d44,stroke:#7b68ee,stroke-width:2px,color:#eee
 ```
 
 ### Step Breakdown
@@ -103,6 +109,7 @@ flowchart TD
 | `/implement` | Apply planned changes, run tests, and collect validation evidence | Plan + requirements | Code, tests, evidence |
 | `/commit` | Create focused, scoped Conventional Commits | Working tree | Scoped commits |
 | `/summarize` | Compare delivery against requirements and generate PR-ready summary | Requirements + plan + branch state | `workflow/summaries/{task}.md` |
+| `/document` | Generate project knowledge base (standalone) | Codebase + optional user context | `architecture.md` + `requirements.md` |
 
 ### Shortcut: Inline Context
 
@@ -139,11 +146,12 @@ The same set of skills is available across 4 AI agents:
 ```
 src/
   skills/                        # Canonical source for all skills
-    requirements/SKILL.md
-    prepare/SKILL.md
-    planning/SKILL.md
-    implement/SKILL.md
     commit/SKILL.md
+    document/SKILL.md
+    implement/SKILL.md
+    planning/SKILL.md
+    prepare/SKILL.md
+    requirements/SKILL.md
     summarize/SKILL.md
 
 scripts/
@@ -183,6 +191,7 @@ Each skill declares a `model-tier` in its YAML frontmatter, indicating the recom
 | `/summarize` | `medium` | Synthesis of git history/diffs, template-driven |
 | `/planning` | `large` | Architecture decisions, decomposition, risk analysis |
 | `/implement` | `large` | Code generation, tests, self-review loop — capability translates to quality |
+| `/document` | `large` | Deep codebase analysis, pattern identification, requirements extraction |
 
 ### Tier Definitions
 
@@ -243,7 +252,7 @@ bash scripts/sync-skills.sh
 ### What the Sync Script Does
 
 - Copies `SKILL.md` from `src/skills/{name}/` to `.opencode/skills/{name}/`, `.github/skills/{name}/`, `.claude/skills/{name}/`, and `.codex/skills/{name}/`
-- Prints each copy operation and a final count (6 skills x 4 agents = 24 files)
+- Prints each copy operation and a final count (7 skills x 4 agents = 28 files)
 
 ### What the Sync Script Does NOT Touch
 
