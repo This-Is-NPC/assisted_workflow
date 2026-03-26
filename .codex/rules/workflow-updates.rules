@@ -1,0 +1,9 @@
+prefix_rule(
+    pattern = ["gh", "api", "repos/This-Is-NPC/assisted_workflow"],
+    decision = "allow",
+)
+
+prefix_rule(
+    pattern = ["git", "ls-remote", "https://github.com/This-Is-NPC/assisted_workflow"],
+    decision = "allow",
+)
