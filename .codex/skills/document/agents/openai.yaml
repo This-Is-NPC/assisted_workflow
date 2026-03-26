@@ -1,0 +1,4 @@
+interface:
+  display_name: "Document"
+  short_description: "Generate architecture.md and requirements.md from codebase analysis."
+  default_prompt: "Analyze the codebase and produce architecture.md (tech stack, dependencies, patterns, auth, roles) and requirements.md (functional, non-functional, business rules with file references). Present a summary and ask for confirmation."
