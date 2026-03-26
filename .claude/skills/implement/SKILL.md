@@ -43,6 +43,7 @@ Activated when a task slug or file paths are provided. Resolve inputs as:
 1. Load execution inputs.
 - **Mode A**: extract Scope, Acceptance Criteria, and Implementation Approach from inline context.
 - **Mode B**: read `workflow/plans/{task-name}.md` and `workflow/requirements/{task-name}.md` for validation reference.
+- Search for `architecture.md` and `requirements.md` in the repository. If found, use the documented patterns, stack, conventions, and business rules as implementation constraints.
 
 2. Implement according to plan / approach.
 - Apply code changes in small, coherent increments.
@@ -94,3 +95,4 @@ Return sections in this order:
 - Keep unresolved risks visible and actionable.
 - Do not exceed 3 self-review attempts. Escalate to the user with actionable failure details.
 - Each fix attempt must be targeted — do not restart implementation from scratch.
+- When `architecture.md` or `requirements.md` are available, ensure changes align with documented patterns, stack choices, and business rules.

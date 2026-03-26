@@ -21,6 +21,7 @@ If a task slug is provided, resolve it to `workflow/requirements/{task-name}.md`
 1. Load planning inputs.
 - Read `workflow/requirements/{task-name}.md` as source of truth.
 - Read the plan template from the path specified in `CONTRIBUTING.md` and use it as the base structure.
+- Search for `architecture.md` and `requirements.md` in the repository. If found, read them and use the documented patterns, stack, conventions, and business rules as constraints for the plan.
 
 2. Map requirements to plan sections.
 - Convert each acceptance criterion into planned work.
@@ -57,3 +58,4 @@ Return sections in this order:
 - Keep test strategy explicit for new and impacted behavior.
 - Keep risk analysis concrete and implementation-oriented.
 - Never leave template placeholders unresolved.
+- When `architecture.md` or `requirements.md` are available, ensure the plan does not contradict documented patterns, stack choices, or business rules.
