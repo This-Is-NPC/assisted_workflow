@@ -136,14 +136,17 @@ The same set of skills is available across 4 AI agents:
 
 | Agent | Skills Path | Extras |
 |-------|------------|--------|
-| `.opencode` | `.opencode/skills/{name}/SKILL.md` | `.opencode/commands/{name}.md` (command wrappers) |
+| `.opencode` | `.opencode/skills/{name}/SKILL.md` | `.opencode/commands/{name}.md` (command wrappers), `.opencode/opencode.json` (permissions) |
 | `.github` | `.github/skills/{name}/SKILL.md` | — |
-| `.claude` | `.claude/skills/{name}/SKILL.md` | `argument-hint` frontmatter + `$ARGUMENTS` |
-| `.codex` | `.codex/skills/{name}/SKILL.md` | `.codex/skills/{name}/agents/openai.yaml` |
+| `.claude` | `.claude/skills/{name}/SKILL.md` | `argument-hint` frontmatter + `$ARGUMENTS`, `.claude/settings.json` (permissions) |
+| `.codex` | `.codex/skills/{name}/SKILL.md` | `.codex/skills/{name}/agents/openai.yaml`, `.codex/config.toml` (permissions), `.codex/rules/workflow-updates.rules` |
 
 ## Repository Structure
 
 ```
+CONTRIBUTING.md                  # Central config hub read by all skills
+README.md
+
 src/
   skills/                        # Canonical source for all skills
     commit/SKILL.md
@@ -155,9 +158,18 @@ src/
     summarize/SKILL.md
 
 scripts/
+  install.sh                     # Installs the workflow into a target project
   sync-skills.sh                 # Distributes skills to all agent directories
 
+.docs/
+  templates/                     # Shared templates consumed by the skills
+    contributing_template.md
+    plan_template.md
+    summary_template.md
+    user_story_template.md
+
 workflow/
+  README.md                      # Step-by-step skill usage guide
   requirements/                  # Requirements per task
   plans/                         # Implementation plans
   summaries/                     # Final summaries and evidence
@@ -165,16 +177,20 @@ workflow/
 .opencode/                       # OpenCode agent config
   skills/*/SKILL.md              #   (synced from src/skills/)
   commands/*.md                  #   Agent-specific command wrappers
+  opencode.json                  #   Permissions
 
 .github/                         # GitHub Copilot agent config
   skills/*/SKILL.md              #   (synced from src/skills/)
 
 .claude/                         # Claude Code agent config
   skills/*/SKILL.md              #   (synced from src/skills/)
+  settings.json                  #   Permissions
 
 .codex/                          # Codex agent config
   skills/*/SKILL.md              #   (synced from src/skills/)
   skills/*/agents/openai.yaml    #   Agent-specific configs
+  config.toml                    #   Permissions
+  rules/workflow-updates.rules   #   Workflow update rules
 ```
 
 The `.gitignore` is configured to ignore generated content in `workflow/` subdirectories, preserving the structure with `.gitkeep` files.
