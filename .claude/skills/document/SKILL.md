@@ -1,6 +1,6 @@
 ---
 name: document
-description: Analyze the codebase and produce architecture.md (tech stack, dependencies, patterns, auth, roles) and requirements.md (functional, non-functional, business rules with file references). Use when the user asks to document project architecture, map implemented requirements, or generate a project knowledge base.
+description: Analyze the codebase and produce architecture.md (tech stack, dependencies, patterns, auth, roles, code metrics) and requirements.md (functional, non-functional, business rules with file references). Use when the user asks to document project architecture, map implemented requirements, or generate a project knowledge base.
 argument-hint: "[optional focus area or additional context]"
 model-tier: large
 ---
@@ -24,6 +24,14 @@ $ARGUMENTS
 - Identify role/permission system and map each role to its privileges if present.
 - Identify design system or UI component library if present.
 - Identify infrastructure and deployment configuration (Docker, CI/CD, cloud services) if present.
+- Always inspect the test structure: presence/absence of tests, test directory layout, framework in use, how tests are invoked. Record this regardless of whether coverage can be measured.
+- Gather code metrics. For each metric below: if the tool is already configured in the project, run it and record the exact command and value. If it is not configured (or tests do not exist for coverage/mutation), write a stack-specific **recommendation** — which tool, why it fits the detected stack, and a minimal setup hint. Do **not** install anything as part of `/document`.
+  - Test coverage: e.g., `pytest --cov` (Python), `jest --coverage` / `vitest --coverage` (JS/TS), `go test -cover` (Go), `cargo tarpaulin` (Rust), `dotnet test --collect:"XPlat Code Coverage"` (.NET), `mvn jacoco:report` (Java/Maven).
+  - Module sizes (LOC): e.g., `tokei`, `cloc`, `scc`. Report top-N largest modules/files.
+  - Cyclomatic complexity: e.g., `radon cc` (Python), ESLint `complexity` rule (JS/TS), `gocyclo` (Go), `lizard` (polyglot), `PMD` (Java). Report top-N hotspots and threshold used.
+  - Internal dependency structure: e.g., `madge` / `depcruise` (JS/TS), `pydeps` / `import-linter` (Python), `go list -deps` + `graphviz` (Go). Report circular dependency count and high fan-in modules.
+  - Mutation score: e.g., `mutmut` / `cosmic-ray` (Python), `Stryker` (JS/TS/.NET), `PIT` (Java), `cargo-mutants` (Rust). Only when configured; otherwise recommend based on the detected stack.
+- If no tests exist at all, still complete the metrics section: mark coverage/mutation as "not measurable — no test suite" and recommend a test framework that fits the detected stack.
 
 2. Create `architecture.md` in the project documentation directory (default: `.docs/`).
 - Document **only** what is verifiable in the codebase or provided as context by the user.
@@ -81,6 +89,18 @@ Library or framework, component conventions. Omit section if not applicable.
 
 ## Infrastructure
 Deployment, CI/CD, containerization, cloud services. Omit section if not applicable.
+
+## Code Metrics
+| Metric | Status | Value / Finding | Source (tool + command) or Recommendation |
+|--------|--------|-----------------|-------------------------------------------|
+| Test structure | measured | {layout, framework, invocation} | {path + command} |
+| Test coverage | measured \| recommended | {% or "no test suite"} | {command ran, OR tool recommended + why it fits the stack} |
+| Module sizes (LOC) | measured \| recommended | {top-N list or —} | {command or recommendation} |
+| Cyclomatic complexity | measured \| recommended | {top-N hotspots or —} | {command or recommendation} |
+| Internal dependency structure | measured \| recommended | {circular deps count, high fan-in, or —} | {command or recommendation} |
+| Mutation score | measured \| recommended | {% or "no test suite"} | {command or recommendation} |
+
+Every row must be filled: either a measured value or a stack-specific recommendation. Do not remove rows.
 ```
 
 ## Requirements Document Structure
@@ -120,3 +140,5 @@ Return sections in this order:
 - Keep both documents concise and scannable (tables over paragraphs).
 - File references must use repository-relative paths.
 - Do not proceed past the summary without user confirmation.
+- Test structure is always documented, even when no tests exist.
+- Every metric row is either measured (with command) or recommended (with tool name + stack rationale). Never leave a metric silently omitted.

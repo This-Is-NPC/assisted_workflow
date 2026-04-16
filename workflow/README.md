@@ -1,3 +1,5 @@
+# Workflow Skills
+
 ## Skills Usage Order
 
 Use commands in this exact order:
@@ -54,7 +56,7 @@ Use commands in this exact order:
 ### 7) `/document` (standalone)
 - Purpose: analyze the codebase and generate a project knowledge base.
 - Input: codebase + optional user context.
-- Output: `architecture.md` (tech stack, dependencies, patterns, auth, roles) and `requirements.md` (functional, non-functional, business rules with file references).
+- Output: `architecture.md` (tech stack, dependencies, patterns, auth, roles, code metrics) and `requirements.md` (functional, non-functional, business rules with file references).
 - Can be used at any point — independent of the pipeline.
 - When these files exist, `/planning` and `/implement` automatically use them as constraints.
 - Example: `/document`

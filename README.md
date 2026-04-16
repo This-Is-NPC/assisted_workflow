@@ -73,7 +73,7 @@ The step order is in `workflow/README.md`:
 5. `/commit`
 6. `/summarize`
 
-The `/document` skill can be used at any point (standalone) to generate `architecture.md` and `requirements.md` as a project knowledge base. When these files exist, `/planning` and `/implement` automatically align new work to the documented patterns.
+The `/document` skill can be used at any point (standalone) to generate `architecture.md` (including code metrics) and `requirements.md` as a project knowledge base. When these files exist, `/planning` and `/implement` automatically align new work to the documented patterns.
 
 Each task follows a linear pipeline: a user request is validated and scoped into requirements, then tracked via a GitHub issue and branch. An execution plan is produced, code is implemented and validated against that plan, changes are committed following Conventional Commits, and finally a reviewer-ready summary compares the delivery against the original requirements.
 
@@ -109,7 +109,7 @@ flowchart TD
 | `/implement` | Apply planned changes, run tests, and collect validation evidence | Plan + requirements | Code, tests, evidence |
 | `/commit` | Create focused, scoped Conventional Commits | Working tree | Scoped commits |
 | `/summarize` | Compare delivery against requirements and generate PR-ready summary | Requirements + plan + branch state | `workflow/summaries/{task}.md` |
-| `/document` | Generate project knowledge base (standalone) | Codebase + optional user context | `architecture.md` + `requirements.md` |
+| `/document` | Generate project knowledge base (standalone) | Codebase + optional user context | `architecture.md` (with code metrics) + `requirements.md` |
 
 ### Shortcut: Inline Context
 
