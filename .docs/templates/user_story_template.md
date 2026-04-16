@@ -1,7 +1,14 @@
-{{Description}}
+# {User Story Title}
 
-{{Acceptance Criteria}}
+## Description
+{Description}
 
-{{Definition of Done}}
+## Acceptance Criteria
+- {Criterion 1}
+- {Criterion 2}
 
-{{}} = Must be removed; these are only placeholders indicating the topic name.
+## Definition of Done
+- [ ] {Completion condition 1}
+- [ ] {Completion condition 2}
+
+{} = Placeholder; replace with the actual content or remove.

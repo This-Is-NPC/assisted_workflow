@@ -1,4 +1,4 @@
-{Feature Name} - Plan
+# {Feature Name} - Plan
 
 ## Metadata
 - **Based on Requirements:** {Link to requirements doc}
