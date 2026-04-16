@@ -5,8 +5,6 @@
       "gh api repos/This-Is-NPC/assisted_workflow*": "allow",
       "git ls-remote https://github.com/This-Is-NPC/assisted_workflow*": "allow"
     },
-    "webfetch": {
-      "https://github.com/This-Is-NPC/assisted_workflow*": "allow"
-    }
+    "webfetch": "allow"
   }
 }
