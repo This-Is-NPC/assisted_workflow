@@ -215,7 +215,7 @@ Each skill declares a `model-tier` in its YAML frontmatter, indicating the recom
 |------|----------|---------------|
 | `small` | Mechanical, constrained tasks with clear rules | Haiku, GPT-4o mini, small local models |
 | `medium` | Structured reasoning with moderate judgment | Sonnet, GPT-4o |
-| `large` | High judgment, open-ended reasoning, code generation | Opus, o3, GPT-4.5 |
+| `large` | High judgment, open-ended reasoning, code generation | Opus, o3, GPT-5 |
 
 ### How Orchestration Tools Use Tiers
 
